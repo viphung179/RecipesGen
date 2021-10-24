@@ -1,24 +1,22 @@
-import React from "react";
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react'
+import Header from './components/Header'
+import Form from './components/KeywordSearch'
+import Ingredients from './components/Ingredients'
+
 
 function App() {
-  const [data, setData] = React.useState(null);
+  // const [data, setData] = React.useState(null);
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
+  // React.useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.message));
+  // }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {!data ? "Loading..." : data}
-        </p>
-      </header>
+    <div className="container">
+      <Header/>
+      <Form keyword="Search by recipe name"/>
     </div>
   );
 }
