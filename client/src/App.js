@@ -1,8 +1,10 @@
 import {useState} from 'react'
-import Header from './components/Header'
-import Form from './components/KeywordSearch'
-import Ingredients from './components/Ingredients'
-
+// import Header from './components/Header';
+// import Form from './components/KeywordSearch';
+// import Ingredients from './components/Ingredients';
+import Home from './Home';
+import Results from './Results';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
   // const [data, setData] = React.useState(null);
@@ -14,11 +16,20 @@ function App() {
   // }, []);
 
   return (
-    <div className="container">
-      <Header/>
-      <Form keyword="Search by recipe name"/>
-    </div>
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/" exact component ={Home} />
+          <Route path="/results" component ={Results} />
+          {/* <Route path="/" exact component ={Home} /> */}
+        {/* <Header/>
+        <Form keyword="Search by recipe name"/> */}
+        </Switch>
+      </div>
+    </Router>
   );
 }
+
+
 
 export default App;
