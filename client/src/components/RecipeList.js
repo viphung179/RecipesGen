@@ -1,10 +1,11 @@
 import React from 'react'
 import Recipe from './Recipe';
 
-function RecipeList(results) {
-    // console.log(results.results[0])
 
-    const recipesList = results.results.map(r => <Recipe recipe = {r}/>)
+function RecipeList(results) {
+    // console.log(results.results[0].id)
+
+    const recipesList = results.results.map(r => <Recipe key={r.id} recipe = {r}/>)
     // console.log(recipesList)
     return (
         <div>

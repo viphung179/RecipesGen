@@ -41,7 +41,13 @@ const testResults = [{id: 715392, title: 'Chicken Tortilla Soup (Slow Cooker)', 
 ,{id: 975070, title: 'Instant Pot Chicken Taco Soup', image: 'https://spoonacular.com/recipeImages/975070-312x231.jpg', imageType: 'jpg'}]
 
 // console.log(testResults)
+function backToSearch(e) {
+  e.preventDefault();
+  // console.log(e.target)
+  // {keywordSearch(searchTerms)};
+  window.location.href='/';
 
+}
 
 function Results() {
   
@@ -50,7 +56,7 @@ function Results() {
       <h1>Results</h1>
       {/* {keywordSearch(searchTerms)} */}
       <RecipeList results={testResults}/>
-      <Button color='green' text='Return'></Button>
+      <button onClick={backToSearch}>Back to Search</button>
     </div>
   );
 }
