@@ -113,5 +113,10 @@ footer {
 }
 
 .recipet{
-  background: #e40f0f
+  background: #fdfdfd;
+  /* border: none; */
+  
+}
+.recipeblock{
+  margin-bottom: 10px;
 }

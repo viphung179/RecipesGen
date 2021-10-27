@@ -41,7 +41,10 @@ function backToResults(e) {
 function RecipeDetails() {
   return (
     <div>
-      <button onClick={backToResults}>Back to results</button>
+      <div>
+        <button className="btn" onClick={backToResults}>Back to results</button>
+        <p>Recipe Calories per Serving: 500</p>
+      </div>
       <img src={testResults.url}></img>
     </div>
   );

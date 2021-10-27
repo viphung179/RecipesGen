@@ -15,6 +15,7 @@ function Home() {
   return (
       <div className="container">
         <Header/>
+        <p>Use the Search bar below to look for your favorite recipes!</p>
         <Form keyword="Search by recipe name"/>
       </div>
 

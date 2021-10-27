@@ -40,6 +40,8 @@ const testResults = [{id: 715392, title: 'Chicken Tortilla Soup (Slow Cooker)', 
 ,{id: 646651, title: 'Herb chicken with sweet potato mash and sautéed broccoli', image: 'https://spoonacular.com/recipeImages/646651-312x231.jpg', imageType: 'jpg'}
 ,{id: 975070, title: 'Instant Pot Chicken Taco Soup', image: 'https://spoonacular.com/recipeImages/975070-312x231.jpg', imageType: 'jpg'}]
 
+
+// const testResults = []
 // console.log(testResults)
 function backToSearch(e) {
   e.preventDefault();
@@ -53,7 +55,9 @@ function Results() {
   
   return (
     <div className="container">
+      <button onClick={backToSearch}>Back to Search</button>
       <h1>Results</h1>
+      <p>Click on recipe names below to see more details</p>
       {/* {keywordSearch(searchTerms)} */}
       <RecipeList results={testResults}/>
       <button onClick={backToSearch}>Back to Search</button>

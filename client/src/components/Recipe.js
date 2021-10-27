@@ -18,7 +18,7 @@ function Recipe({recipe}) {
     // {console.log(recipe)}
     // const recipeID = recipe.id;
     return (
-        <ul>
+        <ul className='recipeblock'>
             <button className="recipet" onClick={getDetails}>
                 <p>{recipe.title}</p>
                 <p style={{display: 'none'}}>{recipe.id}</p>
