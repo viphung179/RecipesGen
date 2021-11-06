@@ -17,6 +17,7 @@ function Home() {
         <Header/>
         <p>Use the Search bar below to look for your favorite recipes!</p>
         <Form keyword="Search by recipe name"/>
+        <p>*At least one word is needed for the search.</p>
       </div>
 
   );

@@ -9,6 +9,7 @@ const baseURL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=905d4d
 
 let searchTerms = localStorage.getItem('keywords');
 
+
 function keywordSearch(keyword) {
     let req = new XMLHttpRequest();
     req.open('GET', baseURL + "&titleMatch=" + keyword);
@@ -20,7 +21,9 @@ function keywordSearch(keyword) {
         if (response.results.length == 0){
           console.log("nothing")
         } else {
-          localStorage.setItem('recipes',response.results)
+          console.log("again")
+          console.log(response.results)
+          return response.results
         }
       } else {
         console.log('Error in network request: ' + req.statusText);
@@ -29,7 +32,7 @@ function keywordSearch(keyword) {
     req.send(null);
     
   };
-// keywordSearch(searchTerms)
+
 const testResults = [{id: 715392, title: 'Chicken Tortilla Soup (Slow Cooker)', image: 'https://spoonacular.com/recipeImages/715392-312x231.jpg', imageType: 'jpg'}, {id: 716268, title: 'African Chicken Peanut Stew', image: 'https://spoonacular.com/recipeImages/716268-312x231.jpg', imageType: 'jpg'}
 ,{id: 715415, title: 'Red Lentil Soup with Chicken and Turnips', image: 'https://spoonacular.com/recipeImages/715415-312x231.jpg', imageType: 'jpg'}
 ,{id: 795751, title: 'Chicken Fajita Stuffed Bell Pepper', image: 'https://spoonacular.com/recipeImages/795751-312x231.jpg', imageType: 'jpg'}
@@ -50,15 +53,19 @@ function backToSearch(e) {
   window.location.href='/';
 
 }
+// keywordSearch(searchTerms)
+
 
 function Results() {
-  
+  // let testResults = keywordSearch(searchTerms)
+  // console.log("testtest")
+  // console.log(testResults)
   return (
     <div className="container">
       <button onClick={backToSearch}>Back to Search</button>
+      
       <h1>Results</h1>
-      <p>Click on recipe names below to see more details</p>
-      {/* {keywordSearch(searchTerms)} */}
+      {/* <p>Click on recipe names below to see more details</p> */}
       <RecipeList results={testResults}/>
       <button onClick={backToSearch}>Back to Search</button>
     </div>

@@ -4,6 +4,8 @@ import Recipe from './Recipe';
 
 function RecipeList(results) {
     console.log(results.results.length)
+    console.log(results.results)
+    // console.log(results.results[0])
     if (results.results.length == 0){
         return(
             <div>There are no recipes matching the search. Please try again.</div>
@@ -14,6 +16,7 @@ function RecipeList(results) {
     // console.log(recipesList)
     return (
         <div>
+            <p>Click on recipe names below to see more details</p>
             {
                 recipesList
                 // <h2>{results[0][1]}</h2>
