@@ -23,7 +23,7 @@ function Recipe({recipe}) {
                 <p>{recipe.title}</p>
                 <p style={{display: 'none'}}>{recipe.id}</p>
                 </button>
-            <img src={recipe.image}></img>
+            {/* <img src={recipe.image}></img> */}
         </ul>
     )
 }

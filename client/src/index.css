@@ -19,6 +19,9 @@ body {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  /* background-image: url("https://spoonacular.com/recipeImages/715392-312x231.jpg");
+  background-size:500px 500px;
+  background-repeat: no-repeat; */
 }
 
 .header {

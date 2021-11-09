@@ -2,9 +2,10 @@ import React from 'react'
 import Recipe from './Recipe';
 
 
+
 function RecipeList(results) {
-    console.log(results.results.length)
-    console.log(results.results)
+    // console.log(results.results.length)
+    // console.log(results.results)
     // console.log(results.results[0])
     if (results.results.length == 0){
         return(
