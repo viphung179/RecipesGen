@@ -61,6 +61,11 @@ function backToResults(e) {
     window.location.href='/results';
 
 }
+function printRecipe(e) {
+  e.preventDefault();
+  window.print();
+
+}
 
 
 // function RecipeDetails() {
@@ -93,7 +98,7 @@ export default function RecipeDetails() {
       const allDetails = response.data;
       setDetails(allDetails.url);
     })
-    .catch(error => console.error(`Error: ${error}`))
+    .catch(error => alert("Recipe currently unavailable, please select a different recipe."))
   }
 
   const getCalories = () => {
@@ -109,6 +114,7 @@ export default function RecipeDetails() {
       <div>
       <div>
         <button className="btn" onClick={backToResults}>Back to results</button>
+        <button className="btn" onClick={printRecipe}>Print This Recipe</button>
         <p>Recipe Calories per Serving: <span id="c">{calories}</span></p>
       </div>
       <img src={details}></img>

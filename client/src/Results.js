@@ -1,7 +1,3 @@
-// import {useState} from 'react'
-// import Header from './components/Header'
-// import Form from './components/KeywordSearch'
-// import Ingredients from './components/Ingredients'
 import RecipeList from "./components/RecipeList";
 import Button from "./components/Button";
 import axios from "axios";
@@ -121,7 +117,6 @@ export default function Results() {
   const getImage = () => {
     axios.get(picURL+ searchTerms)
     .then((response)=>{
-      console.log(JSON.parse(response.data)[0])
       const searchImage = JSON.parse(response.data)[0];
       setImage(searchImage);
     })
@@ -129,11 +124,10 @@ export default function Results() {
   }
     return (
       <div className="container">
-      <button onClick={backToSearch}>Back to Search</button>
+      <button className="btn" onClick={backToSearch}>Back to Search</button>
       <h1 style={{backgroundImage: "url(" + image + ")",padding: "35px 0px 35px 0px", backgroundSize: "cover", backgroundPosition: 'center'}}>Search Results</h1>
-      <img src={image} alt="" />
       <RecipeList results={results}/>
-      <button onClick={backToSearch}>Back to Search</button>
+      <button className="btn" onClick={backToSearch}>Back to Search</button>
     </div>
     )
 };
