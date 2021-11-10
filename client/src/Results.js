@@ -8,6 +8,7 @@ import axios from "axios";
 import React, {useEffect,useState} from 'react'
 
 const baseURL = "https://api.spoonacular.com/recipes/complexSearch?apiKey=905d4d56750d46cc885ae7c248f71c22";
+const picURL = "http://127.0.0.1:3000/";
 
 let searchTerms = localStorage.getItem('keywords');
 
@@ -105,6 +106,7 @@ export default function Results() {
 
   useEffect(() => {
     getAllResults();
+    getImage();
   }, []);
   
   const getAllResults = () => {
@@ -115,11 +117,21 @@ export default function Results() {
     })
     .catch(error => console.error(`Error: ${error}`))
   }
+
+  const getImage = () => {
+    axios.get(picURL+ searchTerms)
+    .then((response)=>{
+      console.log(JSON.parse(response.data)[0])
+      const searchImage = JSON.parse(response.data)[0];
+      setImage(searchImage);
+    })
+    .catch(error => console.error(`Error: ${error}`))
+  }
     return (
       <div className="container">
       <button onClick={backToSearch}>Back to Search</button>
-      {console.log("finish")}
-      <h1 style={{backgroundImage: 'url(https://spoonacular.com/recipeImages/715392-312x231.jpg)', padding: "35px 0px 35px 0px", backgroundSize: "cover", backgroundPosition: 'center'}}>Search Results</h1>
+      <h1 style={{backgroundImage: "url(" + image + ")",padding: "35px 0px 35px 0px", backgroundSize: "cover", backgroundPosition: 'center'}}>Search Results</h1>
+      <img src={image} alt="" />
       <RecipeList results={results}/>
       <button onClick={backToSearch}>Back to Search</button>
     </div>
