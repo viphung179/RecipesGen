@@ -2,7 +2,7 @@ import axios from "axios";
 import React, {useEffect,useState} from 'react';
 
 const baseURL = "https://api.spoonacular.com/recipes/";
-const calorieURL = "http://flip3.engr.oregonstate.edu:5151?id="
+// const calorieURL = "http://flip3.engr.oregonstate.edu:5151?id="
 // https://api.spoonacular.com/recipes/4632/card?apiKey=905d4d56750d46cc885ae7c248f71c22
 
 let id = localStorage.getItem('id');

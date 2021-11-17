@@ -118,8 +118,19 @@ footer {
 .recipet{
   background: #fdfdfd;
   /* border: none; */
-  
+  text-align: left;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-color: rgb(66, 66, 66);
+  /* border-radius: 5px; */
+  width: 100%;
+  /* border-left: none;
+  border-right: none; */
 }
+.recipet:hover{
+  background: #20f868;
+}
+
 .recipeblock{
   margin-bottom: 10px;
   margin-top: 20px;
