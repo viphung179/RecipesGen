@@ -21,7 +21,6 @@ app.get('/',function(req,resp,next){
     // requests to zipcode API
     request(URL + fromZip + '/' + toZip + '/' + unit, (err, res, body) => {
       if (err) { return console.log(err); }
-      // console.log(typeof body)
       resp.send(body)
     });
   }
