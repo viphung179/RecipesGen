@@ -22,48 +22,47 @@ const spoonURL = "https://api.spoonacular.com/recipes/"
 //   href='https://spoonacular.com/recipeCardImages/recipeCard-1635215853646.png
 function Recipe({recipe}) {
 
-    const [calories, setCalories] = useState('');
-    const [URL, setURL] = useState('');
+  const [calories, setCalories] = useState('');
+  const [URL, setURL] = useState('');
 
+  const getCalories = () => {
+    axios.get(calorieURL + recipe.id)
+    .then((response)=>{
+      const calResults= response.data;
+      console.log(calResults)
+      setCalories(calResults.calories);
+    })
+    .catch(error => console.error(`Error: ${error}`))
+    }
 
-    useEffect(() => {
-        getCalories();
-        getURL();
-    }, []);
-
-    const getCalories = () => {
-        axios.get(calorieURL + recipe.id)
-        .then((response)=>{
-          const calResults= response.data;
-          console.log(calResults)
-          setCalories(calResults.calories);
-        })
-        .catch(error => console.error(`Error: ${error}`))
-      }
-
-    const getURL = () => {
-        axios.get(spoonURL + recipe.id + '/information?apiKey=905d4d56750d46cc885ae7c248f71c22')
-        .then((response)=>{
-          const URLResults= response.data.spoonacularSourceUrl;
-        //   console.log(URLResults)
-          setURL(URLResults);
-        })
-        .catch(error => console.error(`Error: ${error}`))
-      }
+  const getURL = () => {
+      axios.get(spoonURL + recipe.id + '/information?apiKey=905d4d56750d46cc885ae7c248f71c22')
+      .then((response)=>{
+        const URLResults= response.data.spoonacularSourceUrl;
+      //   console.log(URLResults)
+        setURL(URLResults);
+      })
+      .catch(error => console.error(`Error: ${error}`))
+    }
     
-    const goToPage = (link) => {
-        window.open(link)
-    };
+  useEffect(() => {
+    getCalories();
+    getURL();
+  }, []);
+  
+  const goToPage = (link) => {
+    window.open(link)
+  };
 
 
     return (
-        <ul className='recipeblock'>
-            <button className="recipet" onClick={()=>goToPage(URL)}>
-                <p>{recipe.title}</p>
-                <p style={{display: 'none'}}>{recipe.id}</p>
-                <p>Calories per serving: {calories}</p>
-            </button>
-        </ul>
+      <ul className='recipeblock'>
+        <button className="recipet" onClick={()=>goToPage(URL)}>
+          <p>{recipe.title}</p>
+          <p style={{display: 'none'}}>{recipe.id}</p>
+          <p>Calories per serving: {calories}</p>
+        </button>
+      </ul>
     )
 }
 

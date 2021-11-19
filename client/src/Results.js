@@ -51,6 +51,7 @@ export default function Results() {
     })
     .catch(error => console.error(`Error: ${error}`))
   }
+  
     return (
       <div className="container">
       <button className="btn" onClick={backToSearch}>Back to Search</button>

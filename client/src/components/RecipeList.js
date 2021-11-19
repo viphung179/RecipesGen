@@ -9,7 +9,7 @@ function RecipeList(results) {
             <div>There are no recipes matching the search. Please try again.</div>
         )
     }
-
+    
     const recipesList = results.results.map(r => <Recipe key={r.id} recipe = {r}/>)
 
     return (
