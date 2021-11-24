@@ -3,7 +3,11 @@ import Recipe from './Recipe';
 
 
 
-function RecipeList(results) {
+function RecipeList(results,loading) {
+    // if (loading) {
+    //     return <h2>Getting Recipes...</h2>
+    // }
+
     if (results.results.length == 0){
         return(
             <div>There are no recipes matching the search. Please try again.</div>

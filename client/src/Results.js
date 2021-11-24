@@ -1,4 +1,5 @@
 import RecipeList from "./components/RecipeList";
+import Pagination from "./components/Pagination";
 import axios from "axios";
 import React, {useEffect,useState} from 'react'
 
@@ -25,8 +26,48 @@ function backToSearch(e) {
 
 }
 
+// export default function Results() {
+//   const [results, setResults] = useState('');
+//   const [image, setImage] = useState('');
+
+//   useEffect(() => {
+//     getAllResults();
+//     getImage();
+//   }, []);
+  
+//   const getAllResults = () => {
+//     axios.get(baseURL+ "&titleMatch=" + searchTerms + "&number=5")
+//     .then((response)=>{
+//       const allResults = response.data.results;
+//       setResults(allResults);
+//     })
+//     .catch(error => console.error(`Error: ${error}`))
+//   }
+
+//   const getImage = () => {
+//     axios.get(picURL+ searchTerms)
+//     .then((response)=>{
+//       const searchImage = JSON.parse(response.data)[0];
+//       setImage(searchImage);
+//     })
+//     .catch(error => console.error(`Error: ${error}`))
+//   }
+  
+//     return (
+//       <div className="container">
+//       <button className="btn" onClick={backToSearch}>Back to Search</button>
+//       <h1 style={{backgroundImage: "url(" + image + ")",padding: "35px 0px 35px 0px", backgroundSize: "cover", backgroundPosition: 'center'}}>Search Results</h1>
+//       <RecipeList results={results}/>
+//       <button className="btn" onClick={backToSearch}>Back to Search</button>
+//     </div>
+//     )
+// };
+
 export default function Results() {
-  const [results, setResults] = useState('');
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [curPage, setCurPage] = useState(1);
+  const [recsPerPage] = useState(2);
   const [image, setImage] = useState('');
 
   useEffect(() => {
@@ -35,14 +76,17 @@ export default function Results() {
   }, []);
   
   const getAllResults = () => {
+    setLoading(true);
     axios.get(baseURL+ "&titleMatch=" + searchTerms + "&number=5")
     .then((response)=>{
       const allResults = response.data.results;
       setResults(allResults);
+      setLoading(false);
     })
     .catch(error => console.error(`Error: ${error}`))
   }
 
+  // getImage from teammate's microservice
   const getImage = () => {
     axios.get(picURL+ searchTerms)
     .then((response)=>{
@@ -51,13 +95,29 @@ export default function Results() {
     })
     .catch(error => console.error(`Error: ${error}`))
   }
+
+  //Get current page recipes
+  const indexOfLastRec = curPage * recsPerPage;
+  const indexOfFistRec = indexOfLastRec - recsPerPage;
+  const curRecs = results.slice(indexOfFistRec, indexOfLastRec);
+  
+
+  // Change page
+  const paginate = (pageNumber) => setCurPage(pageNumber);
   
     return (
       <div className="container">
       <button className="btn" onClick={backToSearch}>Back to Search</button>
-      <h1 style={{backgroundImage: "url(" + image + ")",padding: "35px 0px 35px 0px", backgroundSize: "cover", backgroundPosition: 'center'}}>Search Results</h1>
-      <RecipeList results={results}/>
+      <h1 style={{
+        backgroundImage: "url(" + image + ")",
+        padding: "35px 0px 35px 0px",
+        backgroundSize: "cover",
+        backgroundPosition: 'center',
+        }}>Search Results</h1>
+      <RecipeList results={curRecs} loading={loading}/>
+      <Pagination recsPerPage={recsPerPage} totalRecs={results.length} paginate={paginate}/>
       <button className="btn" onClick={backToSearch}>Back to Search</button>
     </div>
     )
 };
+
