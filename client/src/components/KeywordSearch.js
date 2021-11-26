@@ -7,12 +7,10 @@ function handleSubmit(e) {
   } else {
     localStorage.setItem('keywords',searchTerms);
     window.location.href='../results'
+  } 
+}
 
-  }
-    
-  }
-
-function Form({keyword}) {
+function FormKeywords({keyword}) {
   return (
     <form onSubmit={handleSubmit}>
       <input className="searchBar" name='keywords' type="text" placeholder={keyword} />
@@ -21,8 +19,8 @@ function Form({keyword}) {
   );
 }
 
-Form.defaultProps = {
+FormKeywords.defaultProps = {
   keyword: '',
 }
 
-export default Form
+export default FormKeywords

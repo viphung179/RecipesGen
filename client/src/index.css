@@ -1,4 +1,5 @@
 
+/* all pages */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
 * {
@@ -15,25 +16,8 @@ body {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
-  /* min-height: 300px; */
   border: 1px solid rgb(0, 0, 0);
   padding: 30px;
-  /* border-radius: 5px; */
-}
-
-.searchBar {
-  width: 70%;
-  margin-right: 10px;
-  font-size: 15px;
-  padding: 10px;
-  font-family: 'Poppins', sans-serif;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
 }
 
 .btn {
@@ -45,7 +29,6 @@ body {
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-  /* text-decoration: none; */
   font-size: 15px;
   font-family: inherit;
 }
@@ -60,17 +43,23 @@ body {
   color: white;
 }
 
+/* Home/Search Page */
+.searchBar {
+  width: 70%;
+  margin-right: 10px;
+  font-size: 15px;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Results Page */
 .recipet{
   background: #fdfdfd;
-  /* border: none; */
   text-align: left;
   padding: 5px 10px;
   cursor: pointer;
   border-color: rgb(66, 66, 66);
-  /* border-radius: 5px; */
   width: 100%;
-  /* border-left: none;
-  border-right: none; */
 }
 .recipet:hover{
   background: black;
