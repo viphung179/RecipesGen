@@ -15,6 +15,39 @@ function backToSearch(e) {
   window.location.href='/';
 }
 
+const getKeywordsResults = (setResults) => {
+  axios.get(baseURL+ "&titleMatch=" + keywords + "&number=100")
+  .then((response)=>{
+    const allResults = response.data.results;
+    setResults(allResults);
+    localStorage.removeItem("keywords");
+  })
+
+  .catch(error => console.error(`Error: ${error}`))
+}
+
+const getIngResults = (setResults) => {
+  let ingredientsList = ingredients.replaceAll(", ", ",").split(',').join(",+");
+  axios.get(ingURL+ "&ingredients=" + ingredientsList + "&number=100")
+  .then((response)=>{
+    const allResults = response.data;
+    setResults(allResults);
+    localStorage.removeItem("ingredients");
+  })
+
+  .catch(error => console.error(`Error: ${error}`))
+}
+
+// get Image for search keyword from teammate's microservice
+const getImage = (keypic,setImage) => {
+  axios.get(picURL+ keypic)
+  .then((response)=>{
+    const searchImage = JSON.parse(response.data)[0];
+    setImage(searchImage);
+  })
+  .catch(error => console.error(`Error: ${error}`))
+}
+
 export default function Results() {
   const [results, setResults] = useState([]);
   const [curPage, setCurPage] = useState(1);
@@ -23,48 +56,14 @@ export default function Results() {
 
   useEffect(() => {
     if (keywords) {
-      getKeywordsResults();
-      getImage(keywords)
+      getKeywordsResults(setResults);
+      getImage(keywords,setImage)
     }
     else if (ingredients) {
-      getIngResults();
-      getImage(ingredients.replaceAll(", ", ",").split(',')[0])
+      getIngResults(setResults);
+      getImage(ingredients.replaceAll(", ", ",").split(',')[0],setImage)
     }
-
   }, []);
-  
-  const getKeywordsResults = () => {
-    axios.get(baseURL+ "&titleMatch=" + keywords + "&number=100")
-    .then((response)=>{
-      const allResults = response.data.results;
-      setResults(allResults);
-      localStorage.removeItem("keywords");
-    })
-
-    .catch(error => console.error(`Error: ${error}`))
-  }
-
-  const getIngResults = () => {
-    let ingredientsList = ingredients.replaceAll(", ", ",").split(',').join(",+");
-    axios.get(ingURL+ "&ingredients=" + ingredientsList + "&number=100")
-    .then((response)=>{
-      const allResults = response.data;
-      setResults(allResults);
-      localStorage.removeItem("ingredients");
-    })
-
-    .catch(error => console.error(`Error: ${error}`))
-  }
-
-  // get Image for search keyword from teammate's microservice
-  const getImage = (keypic) => {
-    axios.get(picURL+ keypic)
-    .then((response)=>{
-      const searchImage = JSON.parse(response.data)[0];
-      setImage(searchImage);
-    })
-    .catch(error => console.error(`Error: ${error}`))
-  }
 
   //Get current page recipes
   const indexOfLastRec = curPage * recsPerPage;
@@ -77,12 +76,7 @@ export default function Results() {
   return (
     <div className="container">
       <button className="btn" onClick={backToSearch}>Back to Search</button>
-      <h1 style={{
-        backgroundImage: "url(" + image + ")",
-        padding: "35px 0px 35px 0px",
-        backgroundSize: "cover",
-        backgroundPosition: 'center',
-      }}>Search Results</h1>
+      <h1 className="searchPic" style={{ backgroundImage: "url(" + image + ")"}}>Search Results</h1>
       <RecipeList results={curRecs}/>
       <Pagination recsPerPage={recsPerPage} totalRecs={results.length} paginate={paginate}/>
       <button className="btn" onClick={backToSearch}>Back to Search</button>

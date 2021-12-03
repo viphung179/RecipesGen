@@ -7,7 +7,7 @@ function RecipeList(results) {
             <div>There are no recipes matching the search. Please try again.</div>
         )
     }
-    
+
     // create results list based on search results
     const recipesList = results.results.map(r => <Recipe key={r.id} recipe = {r}/>)
 

@@ -53,6 +53,11 @@ body {
 }
 
 /* Results Page */
+.searchPic{
+  padding: 35px 0px 35px 0px;
+  background-position: center;
+  background-size: 100%;
+}
 .recipet{
   background: #fdfdfd;
   text-align: left;

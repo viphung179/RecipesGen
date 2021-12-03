@@ -1,7 +1,6 @@
 import FormKeywords from './components/KeywordSearch';
 import FormIngredients from './components/IngredientsSearch';
 
-
 function Home() {
   return (
     <div className="container">
@@ -12,9 +11,6 @@ function Home() {
       <FormIngredients ingredients="Search by ingredients"/>
       <p>*Separate ingredients by commas</p>
     </div>
-
-      
-
   );
 };
 

@@ -3,7 +3,6 @@ import Results from './Results';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
-
   return (
     <Router>
       <div>
